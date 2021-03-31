@@ -23,7 +23,9 @@ const Content: React.FC = () => {
       </Heading>
       <DocumentCreateForm />
       <div>
-        document list
+        <Heading size='lg'>
+          document list
+        </Heading>
         <ul>
           {
             documents.map(value => {
@@ -41,7 +43,9 @@ const Content: React.FC = () => {
         </ul>
       </div>
       <div>
-        fetched data
+        <Heading size='lg'>
+          fetched data
+        </Heading>
         {
           data ? data.name : <Spinner />
         }
