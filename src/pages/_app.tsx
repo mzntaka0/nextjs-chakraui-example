@@ -1,6 +1,7 @@
 import {AppProps} from 'next/app'
 import { ChakraProvider } from "@chakra-ui/react"
 import {SWRConfig} from 'swr'
+import {RecoilRoot} from 'recoil'
 
 import {fetcher} from 'lib/services'
 
@@ -20,7 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           },
         }}
       >
-        <Component {...pageProps} />
+        <RecoilRoot>
+          <Component {...pageProps} />
+        </RecoilRoot>
       </SWRConfig>
     </ChakraProvider>
   )

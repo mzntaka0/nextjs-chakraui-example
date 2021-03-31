@@ -10,16 +10,29 @@ import {
   Box
 } from '@chakra-ui/react'
 import {useForm} from 'react-hook-form'
+import {useRecoilState} from 'recoil'
+import {md5} from 'hash-wasm'
+
+import {documentsState} from '../state'
 
 
 const ObjectComponent: React.FC = () => {
   const router = useRouter()
+  const [documents, setDocument] = useRecoilState(documentsState)
   const {handleSubmit, errors, register, formState} = useForm({
     mode: 'all'
   })
 
   const onSubmit = (values: {name: string}) => {
-    router.push(`/documents/${values.name}`)
+    const submit = async () => {
+      const key = await md5(values.name)
+      setDocument(current => current.concat([{
+        key: key,
+        name: values.name
+      }]))
+      router.push(`/documents/${key}`)
+    }
+    submit()
   }
   return (
     <Box
@@ -48,7 +61,11 @@ const ObjectComponent: React.FC = () => {
               name='name'
               placeholder='new document name..'
               ref={register({
-                required: 'please input a new document name'
+                required: 'please input a new document name',
+                maxLength: {
+                  value: 32,
+                  message: 'You must input the name within 32 characters'
+                }
               })}
             />
             <FormErrorMessage>
