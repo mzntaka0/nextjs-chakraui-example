@@ -14,7 +14,7 @@ import {documentsState} from './state'
 
 
 const Content: React.FC = () => {
-  const {data} = useSWR('/api/hello')
+  const {data: articles} = useSWR('/articles')
   const documents = useRecoilValue(documentsState)
   return (
     <>
@@ -46,8 +46,13 @@ const Content: React.FC = () => {
         <Heading size='lg'>
           fetched data
         </Heading>
+      </div>
+      <div>
+        <Heading size='lg'>
+          msw data
+        </Heading>
         {
-          data ? data.name : <Spinner />
+          articles ? JSON.stringify(articles) : <Spinner />
         }
       </div>
     </>

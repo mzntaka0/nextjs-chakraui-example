@@ -4,6 +4,13 @@ import {SWRConfig} from 'swr'
 import {RecoilRoot} from 'recoil'
 
 import {fetcher} from 'lib/services'
+import {worker} from 'lib/services/mocks/browser'
+
+
+if (process.env.API_MOCKING === 'enabled') {
+  require('../lib/services/mocks')
+}
+
 
 
 function MyApp({ Component, pageProps }: AppProps) {
