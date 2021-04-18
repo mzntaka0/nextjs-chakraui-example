@@ -16,6 +16,10 @@ import {documentsState} from './state'
 const Content: React.FC = () => {
   const {data: articles} = useSWR('/articles')
   const documents = useRecoilValue(documentsState)
+
+  if (!articles) {
+    return <p>loading..</p>
+  }
   return (
     <>
       <Heading size='lg'>
@@ -51,9 +55,11 @@ const Content: React.FC = () => {
         <Heading size='lg'>
           msw data
         </Heading>
-        {
-          articles ? JSON.stringify(articles) : <Spinner />
-        }
+        <p role='msw'>
+          {
+            articles ? JSON.stringify(articles) : <Spinner />
+          }
+        </p>
       </div>
     </>
   )
