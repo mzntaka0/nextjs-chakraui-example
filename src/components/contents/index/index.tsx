@@ -57,7 +57,7 @@ const Content: React.FC = () => {
         </Heading>
         <p role='msw'>
           {
-            articles ? JSON.stringify(articles) : <Spinner />
+            JSON.stringify(articles)
           }
         </p>
       </div>

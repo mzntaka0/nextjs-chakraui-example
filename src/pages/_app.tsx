@@ -18,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ChakraProvider>
       <SWRConfig
         value={{
+          dedupingInterval: 0,
           fetcher: fetcher,
           onError: (err) => {
             if (process.env.NODE_ENV == 'production') {

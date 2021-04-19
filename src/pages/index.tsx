@@ -5,6 +5,7 @@ import {api} from 'lib/services'
 
 
 const Page: NextPage = (props) => {
+  console.log(props)
   return (
     <Content />
   )
