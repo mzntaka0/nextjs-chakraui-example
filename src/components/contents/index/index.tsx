@@ -14,11 +14,11 @@ import {documentsState} from './state'
 
 
 const Content: React.FC = () => {
-  const {data: articles} = useSWR('/articles')
+  const {data: articles} = useSWR('https://hoge.sample.com/backend/api/articles')
   const documents = useRecoilValue(documentsState)
 
   if (!articles) {
-    return <p>loading..</p>
+    return <>loading..</>
   }
   return (
     <>

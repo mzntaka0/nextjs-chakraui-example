@@ -8,15 +8,6 @@ import {fetcher} from 'lib/services'
 import Content from './index'
 
 
-beforeEach(() => cache.clear())
-beforeAll(() => server.listen())
-afterEach(() => {
-  server.resetHandlers()
-  cache.clear()
-})
-afterAll(() => server.close())
-
-
 describe('test', () => {
   it('msw test', async () => {
     render(<Content />)
