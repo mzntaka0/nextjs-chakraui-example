@@ -14,8 +14,12 @@ import {documentsState} from './state'
 
 
 const Content: React.FC = () => {
-  const {data} = useSWR('/api/hello')
+  const {data: articles} = useSWR('https://hoge.sample.com/backend/api/articles')
   const documents = useRecoilValue(documentsState)
+
+  if (!articles) {
+    return <>loading..</>
+  }
   return (
     <>
       <Heading size='lg'>
@@ -46,9 +50,16 @@ const Content: React.FC = () => {
         <Heading size='lg'>
           fetched data
         </Heading>
-        {
-          data ? data.name : <Spinner />
-        }
+      </div>
+      <div>
+        <Heading size='lg'>
+          msw data
+        </Heading>
+        <p role='msw'>
+          {
+            JSON.stringify(articles)
+          }
+        </p>
       </div>
     </>
   )

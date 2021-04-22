@@ -4,6 +4,13 @@ import {SWRConfig} from 'swr'
 import {RecoilRoot} from 'recoil'
 
 import {fetcher} from 'lib/services'
+import {worker} from 'lib/services/mocks/browser'
+
+
+if (process.env.API_MOCKING === 'enabled') {
+  require('../lib/services/mocks')
+}
+
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -11,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ChakraProvider>
       <SWRConfig
         value={{
+          dedupingInterval: 0,
           fetcher: fetcher,
           onError: (err) => {
             if (process.env.NODE_ENV == 'production') {

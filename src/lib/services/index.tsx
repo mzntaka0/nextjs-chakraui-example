@@ -1,6 +1,8 @@
 import axiosbase from 'axios'
 
 
+console.log('hoge', process.env.API_URL)
+
 export const api = axiosbase.create({
   baseURL: process.env.API_URL,
   headers: {
